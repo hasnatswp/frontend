@@ -1,0 +1,32 @@
+version: 0.2
+phases:
+  install:
+    runtime-versions:
+      nodejs: 16
+    commands:
+    - echo Install phase
+  pre_build:
+    commands:
+    - echo Installing source NPM dependencies...
+    - npm install
+    - aws --version
+  build:
+    commands:
+    - echo Build started on `date`
+    - echo Compiling the Node.js code
+    - npm run build
+    - echo build finished, now moving to s3
+  post_build:
+    commands:
+    - echo Build completed on `date`
+    - ls
+    - pwd
+    - aws s3 rm s3://bucket-name --recursive
+    - aws s3 cp --recursive --acl public-read ./dist s3://bucket-name/
+# Include only the files required for your application to run.
+artifacts:
+  files:
+  # - src/index.js
+  # - src/app.js
+  # - package.json
+  - dist/**/*
