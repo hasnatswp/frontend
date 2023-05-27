@@ -29,4 +29,5 @@ artifacts:
   # - src/index.js
   # - src/app.js
   # - package.json
-  - dist/**/*
+  - "dist/*"
+  - "dist/**/*"
