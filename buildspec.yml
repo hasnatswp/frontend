@@ -22,7 +22,7 @@ phases:
     - ls
     - pwd
     - aws s3 rm s3://test.softwrd.ai --recursive
-    - aws s3 sync dist/ s3://test.softwrd.ai --recursive --acl public-read
+    - aws s3 sync dist/ s3://test.softwrd.ai --acl public-read
 # Include only the files required for your application to run.
 artifacts:
   files:
